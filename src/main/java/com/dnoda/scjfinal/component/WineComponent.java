@@ -13,7 +13,7 @@ public class WineComponent {
 	@Autowired
 	WineRepository wineRepository;
 	
-	public Wine salvar(Wine wine){
+	public Wine save(Wine wine){
 		List<Wine> wines = wineRepository.findByName(wine.getName());
 		
 		if(!wines.isEmpty()){
@@ -31,6 +31,14 @@ public class WineComponent {
 		wineRepository.deleteAll();
 	}
 	
+	public void delete(String name){
+		List<Wine> wines = wineRepository.findByName(name);
+		
+		if(!wines.isEmpty()){
+			wineRepository.delete(wines.get(0).getId());
+		}
+	}
+
 	public Wine getWine(String name){
 		List<Wine> wines = wineRepository.findByName(name);
 		
